@@ -64,7 +64,8 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	searchKey := params.Get("q")
 
 	if searchKey == "" {
-		err = tpl.Execute(w, nil)
+		err = tpl.Execute(w, parse.Search{SearchKey: ""})
+		return
 	}
 
 	page := params.Get("page")
@@ -97,21 +98,21 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	response, err := http.Get(endpoint)
 
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "500 | Internal server error", http.StatusInternalServerError)
 		return
 	}
 
 	defer response.Body.Close()
 
 	if response.StatusCode != http.StatusOK {
-		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "500 | Internal server error", http.StatusInternalServerError)
 		return
 	}
 
 	err = json.NewDecoder(response.Body).Decode(&search.Results)
 
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "500 | Internal server error", http.StatusInternalServerError)
 		return
 	}
 
@@ -124,7 +125,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	err = tpl.Execute(w, search)
 
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "500 | Internal server error", http.StatusInternalServerError)
 		return
 	}
 }
