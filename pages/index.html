@@ -24,8 +24,8 @@
         <div class="result-count">
             {{ if .Results }}
                 {{ if gt .Results.TotalResults 0 }}
-                    <p>About <strong>{{ .Results.TotalResults }}</strong> results were found.</p>
-            {{ else if ne .SearchKey "" }}
+                    <p>About <strong>{{ .Results.TotalResults }}</strong> results were found. You are on page <strong>{{ .CurrentPage }}</strong> of <strong> {{ .TotalPages }}</strong>.</p>
+                {{ else if ne .SearchKey "" and (eq .Results.TotalResults 0)}}
                     <p>No results found for your query: <strong>{{ .SearchKey }}</strong>.</p>
                 {{ end }}
             {{ end }}
@@ -47,6 +47,14 @@
             </li>
             {{ end }}
         </ul>
+        <div class="pagination">
+            {{ if gt .NextPage 2 }}
+                <a href="/search?q={{ .SearchKey }}&page={{ .PreviousPage }}" class="button previous-page">Previous</a>
+            {{ end }}
+            {{ if ne .IsLastPage true }}
+                <a href="/search?q={{ .SearchKey }}&page={{ .NextPage }}" class="button next-page">Next</a>
+            {{ end }}
+        </div>
     </section>
 </main>
 </body>

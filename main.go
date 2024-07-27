@@ -59,6 +59,11 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	params := u.Query()
 
 	searchKey := params.Get("q")
+
+	if searchKey == "" {
+		err = tpl.Execute(w, nil)
+	}
+
 	page := params.Get("page")
 
 	if page == "" {
@@ -108,6 +113,11 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	search.TotalPages = int(math.Ceil(float64(search.Results.TotalResults / pageSize)))
+
+	if ok := !search.IsLastPage(); ok {
+		search.NextPage++
+	}
+
 	err = tpl.Execute(w, search)
 
 	if err != nil {

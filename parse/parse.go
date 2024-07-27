@@ -38,3 +38,19 @@ func (a *Article) ParseDate() string {
 	y, m, d := a.PublishedAt.Date()
 	return fmt.Sprintf("%d %s %v", d, m, y)
 }
+
+func (s *Search) IsLastPage() bool {
+	return s.NextPage >= s.TotalPages
+}
+
+func (s *Search) CurrentPage() int {
+	if s.NextPage == 1 {
+		return s.NextPage
+	}
+
+	return s.NextPage - 1
+}
+
+func (s *Search) PreviousPage() int {
+	return s.CurrentPage() - 1
+}
