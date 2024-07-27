@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Portal to the News</title>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <link rel="stylesheet" href="/static/app.css">
 </head>
 <body>
 <main>
     <header>
-        <a class="logo" href="/">Portal to the News</a>
+        <a class="logo button info-button" href="/">Portal to the News</a>
         <form action="/search" method="GET">
             <label>
                 <input autofocus class="search-input" value="{{ .SearchKey }}"

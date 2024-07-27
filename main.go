@@ -15,6 +15,7 @@ import (
 )
 
 var tpl = template.Must(template.ParseFiles("pages/index.html"))
+var tplInfo = template.Must(template.ParseFiles("pages/info.html"))
 
 func main() {
 	port := os.Getenv("PORT")
@@ -29,6 +30,7 @@ func main() {
 	serveMux.Handle("/static/", http.StripPrefix("/static/", fs))
 	serveMux.HandleFunc("/", indexHandler)
 	serveMux.HandleFunc("/search", searchHandler)
+	serveMux.HandleFunc("/info", infoHandler)
 
 	log.Println("Begin listening on http://localhost:" + port)
 
@@ -123,5 +125,13 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
+	}
+}
+
+func infoHandler(w http.ResponseWriter, r *http.Request) {
+	err := tplInfo.Execute(w, nil)
+
+	if err != nil {
+		log.Println(err)
 	}
 }
