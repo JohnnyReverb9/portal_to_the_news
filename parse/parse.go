@@ -1,6 +1,9 @@
 package parse
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 type Source struct {
 	ID   interface{} `json:"id"`
@@ -29,4 +32,9 @@ type Search struct {
 	NextPage   int
 	TotalPages int
 	Results    Results
+}
+
+func (a *Article) ParseDate() string {
+	y, m, d := a.PublishedAt.Date()
+	return fmt.Sprintf("%d %s %v", d, m, y)
 }
