@@ -2,9 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Portal to the news</title>
+    <link rel="stylesheet" href="/static/app.css">
 </head>
 <body>
-<h1>Hello</h1>
+<main>
+    <header>
+        <a class="logo" href="/">Portal to the news</a>
+        <form action="/search" method="GET">
+            <label>
+                <input autofocus class="search-input" value=""
+                       placeholder="Enter a news topic" type="search" name="q">
+            </label>
+        </form>
+        <a class="button info-button" href="/info">Get info</a>
+    </header>
+</main>
 </body>
 </html>

@@ -8,13 +8,6 @@ html {
     padding: 0;
 }
 
-:root {
-    --light-blue: #0090ff;
-    --dark-dark: #001e3b;
-    --dark-grey: #777;
-    --light-grey: #dadce0;
-}
-
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
 }
@@ -29,8 +22,8 @@ a:hover {
 }
 
 a.button {
-    border: 2px solid #0090ff;
-    color: var(--dark-green);
+    border: 2px solid #001e3b;
+    color: #001e3b;
     border-radius: 4px;
     padding: 6px 24px;
     font-size: 14px;
@@ -39,8 +32,8 @@ a.button {
 
 a.button:hover {
     text-decoration: none;
-    background-color: var(--dark-green);
-    color: var(--light-green);
+    background-color: #001e3b;
+    color: #0090ff;
 }
 
 header {
@@ -52,13 +45,13 @@ header {
     right: 0;
     display: flex;
     justify-content: space-between;
-    background-color: var(--light-green);
+    background-color: #0090ff;
     padding: 5px 10px;
     align-items: center;
 }
 
 .logo {
-    color: #002200;
+    color: #001e3b;
 }
 
 form {
@@ -70,8 +63,8 @@ form {
     height: 100%;
     border-radius: 4px;
     border-color: transparent;
-    background-color: var(--dark-green);
-    color: var(--light-green);
+    background-color: #001e3b;
+    color: #0090ff;
     font-size: 16px;
     line-height: 1.4;
     padding-left: 5px;
@@ -85,7 +78,7 @@ form {
 }
 
 .result-count {
-    color: var(--dark-grey);
+    color: #777;
     text-align: center;
     margin-bottom: 15px;
 }
@@ -98,7 +91,7 @@ form {
     display: flex;
     align-items: flex-start;
     margin-bottom: 30px;
-    border: 1px solid var(--light-grey);
+    border: 1px solid #dadce0;
     padding: 15px;
     border-radius: 4px;
     justify-content: space-between;
@@ -116,13 +109,13 @@ form {
 }
 
 .description {
-    color: var(--dark-grey);
+    color: #777;
     margin-bottom: 15px;
 }
 
 .metadata {
     display: flex;
-    color: var(--dark-green);
+    color: #001e3b;
     font-size: 14px;
 }
 
@@ -155,7 +148,7 @@ form {
         width: 100%;
     }
 
-    .github-button {
+    .info-button {
         display: none;
     }
 

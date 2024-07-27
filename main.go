@@ -1,10 +1,13 @@
 package main
 
 import (
+	"html/template"
 	"log"
 	"net/http"
 	"os"
 )
+
+var tpl = template.Must(template.ParseFiles("pages/index.html"))
 
 func main() {
 	port := os.Getenv("PORT")
@@ -14,6 +17,9 @@ func main() {
 	}
 
 	serveMux := http.NewServeMux()
+
+	fs := http.FileServer(http.Dir("static"))
+	serveMux.Handle("/static/", http.StripPrefix("/static/", fs))
 	serveMux.HandleFunc("/", indexHandler)
 
 	log.Println("Begin listening on http://localhost:" + port)
@@ -26,9 +32,7 @@ func main() {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	_, err := w.Write([]byte("<h1>Welcome!</h1>"))
-
-	// log.Println(r.Method, r.Response.StatusCode)
+	err := tpl.Execute(w, nil)
 
 	if err != nil {
 		log.Println(err)
