@@ -28,6 +28,7 @@ func main() {
 
 	fs := http.FileServer(http.Dir("static"))
 	serveMux.Handle("/static/", http.StripPrefix("/static/", fs))
+	serveMux.HandleFunc("/assets/favicon.ico", faviconHandler)
 	serveMux.HandleFunc("/", indexHandler)
 	serveMux.HandleFunc("/search", searchHandler)
 	serveMux.HandleFunc("/info", infoHandler)
@@ -134,4 +135,8 @@ func infoHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
+}
+
+func faviconHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "assets/favicon.ico")
 }
